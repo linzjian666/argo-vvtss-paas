@@ -39,8 +39,8 @@ EOF
     /usr/sbin/sshd -f ${HOME}/custom_ssh/sshd_config -D &
 fi
 # 设置各变量
-WSPATH=${WSPATH:-'argo'}
-UUID=${UUID:-'de04add9-5c68-8bab-950c-08cd5320df18'}
+WSPATH=${WSPATH:-'3e7e830a-9be5-41c1-ad8b-b08403f33782'}
+UUID=${UUID:-'3e7e830a-9be5-41c1-ad8b-b08403f33782'}
 MAX_MEMORY_RESTART=${MAX_MEMORY_RESTART:-'128M'}
 CERT_DOMAIN=${CERT_DOMAIN:-'example.com'}
 PANEL_TYPE=${PANEL_TYPE:-'NewV2board'}
@@ -284,30 +284,26 @@ generate_config() {
           "tag": "blocked"
         },
         {
-            "protocol": "wireguard",
-            "settings": {
-                "address": [
+            "tag":"WARP",
+            "protocol":"wireguard",
+            "settings":{
+                "secretKey":"uC8wYr2q+VgqyGkUmnNxz5PR8rTVEfTolsed0YK7LG4=",
+                "address":[
                     "172.16.0.2/32",
-                    "2606:4700:110:86c2:d7ca:13d:b14a:e7bf/128"
+                    "2606:4700:110:8a36:df92:102a:9602:fa18/128"
                 ],
-                "peers": [
+                "peers":[
                     {
-                        "allowedIPs": [
+                        "publicKey":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowedIPs":[
                             "0.0.0.0/0",
                             "::/0"
                         ],
-                        "endpoint": "162.159.193.10:2408",
-                        "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+                        "endpoint":"162.159.193.10:2408"
                     }
                 ],
-                "reserved": [
-                    249,
-                    159,
-                    96
-                ],
-                "secretKey": "yG/Phr+fhiBR95b22GThzxGs/Fccyl0U9H4X0GwEeHs="
-            },
-            "tag": "WARP"
+                "mtu":1280
+            }
         }
     ],
     "routing":{
@@ -316,8 +312,19 @@ generate_config() {
             {
                 "type":"field",
                 "domain":[
+                    "domain:ai.com",
+                    "domain:auth0.com",
+                    "domain:challenges.cloudflare.com",
+                    "domain:client-api.arkoselabs.com",
+                    "domain:events.statsigapi.net",
+                    "domain:featuregates.org",
+                    "domain:identrust.com",
+                    "domain:intercom.io",
+                    "domain:intercomcdn.com",
                     "domain:openai.com",
-                    "domain:ai.com"
+                    "domain:openaiapi-site.azureedge.net",
+                    "domain:sentry.io",
+                    "domain:stripe.com"
                 ],
                 "outboundTag":"WARP"
             },
@@ -372,31 +379,27 @@ EOF
     cat >apps/custom_outbound.json <<EOF
 [
     {
-        "protocol": "wireguard",
-        "settings": {
-            "address": [
-                "172.16.0.2/32",
-                "2606:4700:110:86c2:d7ca:13d:b14a:e7bf/128"
-            ],
-            "peers": [
-                {
-                    "allowedIPs": [
-                        "0.0.0.0/0",
-                        "::/0"
-                    ],
-                    "endpoint": "162.159.193.10:2408",
-                    "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
-                }
-            ],
-            "reserved": [
-                249,
-                159,
-                96
-            ],
-            "secretKey": "yG/Phr+fhiBR95b22GThzxGs/Fccyl0U9H4X0GwEeHs="
-        },
-        "tag": "WARP"
-    }
+            "tag":"WARP",
+            "protocol":"wireguard",
+            "settings":{
+                "secretKey":"uC8wYr2q+VgqyGkUmnNxz5PR8rTVEfTolsed0YK7LG4=",
+                "address":[
+                    "172.16.0.2/32",
+                    "2606:4700:110:8a36:df92:102a:9602:fa18/128"
+                ],
+                "peers":[
+                    {
+                        "publicKey":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowedIPs":[
+                            "0.0.0.0/0",
+                            "::/0"
+                        ],
+                        "endpoint":"162.159.193.10:2408"
+                    }
+                ],
+                "mtu":1280
+            }
+        }
 ]
 EOF
     # config.yml file for apps
