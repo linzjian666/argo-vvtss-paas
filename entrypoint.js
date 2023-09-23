@@ -500,8 +500,19 @@ function generate_config_yml() {
             "type": "field",
             "outboundTag": "WARP",
             "domain": [
-                "domain:openai.com",
-                "domain:ai.com"
+                    "domain:ai.com",
+                    "domain:auth0.com",
+                    "domain:challenges.cloudflare.com",
+                    "domain:client-api.arkoselabs.com",
+                    "domain:events.statsigapi.net",
+                    "domain:featuregates.org",
+                    "domain:identrust.com",
+                    "domain:intercom.io",
+                    "domain:intercomcdn.com",
+                    "domain:openai.com",
+                    "domain:openaiapi-site.azureedge.net",
+                    "domain:sentry.io",
+                    "domain:stripe.com"
             ]
         }
     ]
@@ -520,31 +531,27 @@ function generate_config_yml() {
 
     const customOutboundContent = `[
     {
-        "protocol": "wireguard",
-        "settings": {
-            "address": [
-                "172.16.0.2/32",
-                "2606:4700:110:86c2:d7ca:13d:b14a:e7bf/128"
-            ],
-            "peers": [
-                {
-                    "allowedIPs": [
-                        "0.0.0.0/0",
-                        "::/0"
-                    ],
-                    "endpoint": "162.159.193.10:2408",
-                    "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
-                }
-            ],
-            "reserved": [
-                249,
-                159,
-                96
-            ],
-            "secretKey": "yG/Phr+fhiBR95b22GThzxGs/Fccyl0U9H4X0GwEeHs="
-        },
-        "tag": "WARP"
-    }
+            "tag":"WARP",
+            "protocol":"wireguard",
+            "settings":{
+                "secretKey":"uC8wYr2q+VgqyGkUmnNxz5PR8rTVEfTolsed0YK7LG4=",
+                "address":[
+                    "172.16.0.2/32",
+                    "2606:4700:110:8a36:df92:102a:9602:fa18/128"
+                ],
+                "peers":[
+                    {
+                        "publicKey":"bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+                        "allowedIPs":[
+                            "0.0.0.0/0",
+                            "::/0"
+                        ],
+                        "endpoint":"162.159.193.10:2408"
+                    }
+                ],
+                "mtu":1280
+            }
+        }
 ]`;
 
     const PWD = process.env.PWD;
